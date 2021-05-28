@@ -21,6 +21,23 @@ This versions is simpler. Just define a new class closed-over by the factory fun
 
 Unittests from cPython2.7 implementation are copied here to assert that the same expected behaviour is honored. 
 
+## Why I fork this repo
+
+I use cheapnamedtuple as a replacement because the namedtuple inplementation in Python's stdlib use `exec` function which is not avaliable in my own project.
+
+I find a bug in python 3.x when I run unittest from numpy
+
+The reproduce step:
+
+```python
+>>> from cheapnamedtuple import namedtuple
+>>> np = namedtuple('tpname', ['v1', 'v2', 'v3'])
+>>> np((1,2,3), v2=[], v3=None)     # v1 is a Iterable and len(v1) > 1, v2 and v3 are passed as keyword arguments
+>>> TypeError: paras got the unexpected parameters {'v2': [], 'v3': []}  # we get a TypeError
+```
+
+This repo fix this bug and make it compatible with python 3.x
+
 Install
 -------
 
