@@ -77,9 +77,6 @@ def namedtuple(typename, field_names, verbose=False, rename=False):
         _fields = tuple(field_names)
 
         def __new__(cls, *args, **kwargs):
-            if len(args) == 1 and isinstance(args[0], Iterable):
-                args = args[0]
-
             if len(args) > len(field_names):
                 raise TypeError('Too many arguments')
 
