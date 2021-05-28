@@ -30,9 +30,9 @@ def namedtuple(typename, field_names, verbose=False, rename=False):
 
     # Validate the field names.  At the user's option, either generate an error
     # message or automatically replace the field name with a valid name.
-    if isinstance(field_names, basestring):
+    if isinstance(field_names, str):
         field_names = field_names.replace(',', ' ').split()
-    field_names = map(str, field_names)
+    field_names = list(map(str, field_names))
     typename = str(typename)
     if rename:
         seen = set()
